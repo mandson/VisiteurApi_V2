@@ -27,7 +27,7 @@ public class DepartementDTO {
                 .id(departement.getId())
                 .nomDepartement(departement.getNomDepartement())
                 .descriptionDepartement(departement.getDescriptionDepartement())
-                .entrepriseId(new Entreprise())
+                .entrepriseId(departement.getEntreprise())
                 .build();
     }
 

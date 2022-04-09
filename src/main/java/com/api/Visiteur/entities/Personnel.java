@@ -21,6 +21,7 @@ public class Personnel  implements Serializable {
     @Column(unique=true)
     private String matricule;
     private String bureau;
+    private Long departId;
 
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

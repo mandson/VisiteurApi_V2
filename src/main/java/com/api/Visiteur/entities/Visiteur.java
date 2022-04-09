@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Data
@@ -19,10 +21,13 @@ public class Visiteur  implements Serializable {
     private Integer contact;
     private String address;
     private String photo;
-    private Date dateVisite;
+    private String numeroCnib;
+    private LocalDateTime  dateVisite;
     private String entreprise;
     private String heureEntrer;
     private String heurSortie;
+    private Long idPersonnel;
+
     @ManyToOne
     private  Personnel personnel;
     @ManyToOne

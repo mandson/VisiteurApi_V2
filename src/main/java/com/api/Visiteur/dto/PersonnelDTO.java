@@ -18,7 +18,7 @@ public class PersonnelDTO {
     private String matricule;
     private String bureau;
     private Departement departementId;
-
+    private Long departId;
     public static PersonnelDTO convertePersonnelToPersonnelDTO( Personnel personnel  ){
         if (personnel==null){
             return null;
@@ -33,6 +33,7 @@ public class PersonnelDTO {
                 .matricule(personnel.getMatricule())
                 .bureau(personnel.getBureau())
                 .departementId(personnel.getDepartement())
+                .departId(personnel.getDepartId())
                 .build();
     }
     public static Personnel convertPersonnelDTOtoPersonnel(PersonnelDTO personnelDTO){
@@ -45,7 +46,13 @@ public class PersonnelDTO {
         personnel.setMatricule(personnelDTO.getMatricule());
         personnel.setBureau(personnelDTO.getBureau());
         personnel.setDepartement(personnelDTO.departementId);
-         return personnel;
+        personnel.setDepartement(DepartementDTO
+                .convertDepartementDTOtoDepartement(DepartementDTO
+                        .builder()
+                        .id(personnelDTO.getDepartId())
+                        .build()));
+
+        return personnel;
 
     }
 }
