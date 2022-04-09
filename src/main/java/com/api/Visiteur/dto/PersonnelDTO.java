@@ -7,9 +7,12 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.ManyToOne;
+import java.security.SecureRandom;
+
 @Builder
 @Data
 public class PersonnelDTO {
+
     private Long id;
     private String nom;
     private String prenom;
@@ -18,6 +21,7 @@ public class PersonnelDTO {
     private String matricule;
     private String bureau;
     private Departement departementId;
+    private Long departId;
 
     public static PersonnelDTO convertePersonnelToPersonnelDTO( Personnel personnel  ){
         if (personnel==null){
@@ -33,6 +37,7 @@ public class PersonnelDTO {
                 .matricule(personnel.getMatricule())
                 .bureau(personnel.getBureau())
                 .departementId(personnel.getDepartement())
+                //.departId(personnel.getDepartId())
                 .build();
     }
     public static Personnel convertPersonnelDTOtoPersonnel(PersonnelDTO personnelDTO){
@@ -42,10 +47,18 @@ public class PersonnelDTO {
         personnel.setPrenom(personnelDTO.getPrenom());
         personnel.setContact(personnelDTO.getContact());
         personnel.setMail(personnelDTO.getMail());
+
         personnel.setMatricule(personnelDTO.getMatricule());
         personnel.setBureau(personnelDTO.getBureau());
-        personnel.setDepartement(personnelDTO.departementId);
-         return personnel;
+        personnel.setDepartId(personnelDTO.getDepartId());
+
+        personnel.setDepartement(DepartementDTO
+                .convertDepartementDTOtoDepartement(DepartementDTO
+                        .builder()
+                        .id(personnelDTO.getDepartId())
+                        .build()));
+
+        return personnel;
 
     }
 }

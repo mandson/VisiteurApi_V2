@@ -7,9 +7,16 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.transaction.Transactional;
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 @Builder
 @Data
+@Transactional
 public class VisiteurDTO {
 
     private Long id;
@@ -18,12 +25,17 @@ public class VisiteurDTO {
     private Integer contact;
     private String address;
     private String photo;
-    private Date dateVisite;
+    private String numeroCnib;
+
+    private LocalDateTime dateVisite;
+
     private String entreprise;
-    private String heureEntrer;
-    private String heurSortie;
+    private Date heureEntrer;
+    private Time heurSortie;
     private Personnel personnel;
     private VisiteCategorie visiteCategorie;
+    private Long idPersonnel;
+    private Boolean etatVisite;
 
     public static VisiteurDTO converteVisiteurToVisiteurDTO( Visiteur visiteur  ){
         if (visiteur==null){
@@ -43,6 +55,9 @@ public class VisiteurDTO {
                 .heurSortie(visiteur.getHeurSortie())
                 .personnel(visiteur.getPersonnel())
                 .visiteCategorie(visiteur.getVisiteCategorie())
+                .idPersonnel(visiteur.getIdPersonnel())
+                .numeroCnib(visiteur.getNumeroCnib())
+                .etatVisite(visiteur.getEtatVisite())
                 .build();
     }
 
@@ -58,13 +73,28 @@ public class VisiteurDTO {
         visiteur.setContact(visiteurDTO.getContact());
         visiteur.setAddress(visiteurDTO.getAddress());
         visiteur.setPhoto(visiteurDTO.getPhoto());
-        visiteur.setDateVisite(visiteurDTO.dateVisite);
-        visiteur.setEntreprise(visiteur.getEntreprise());
-        visiteur.setHeureEntrer(visiteur.getHeureEntrer());
-        visiteur.setHeurSortie(visiteur.getHeurSortie());
-        visiteur.setPersonnel(visiteur.getPersonnel());
-        visiteur.setVisiteCategorie(visiteur.getVisiteCategorie());
+        visiteur.setDateVisite(LocalDateTime.now());
+        visiteur.setEntreprise(visiteurDTO.getEntreprise());
+        visiteur.setHeureEntrer(visiteurDTO.getHeureEntrer());
+        visiteur.setHeurSortie(visiteurDTO.getHeurSortie());
+        visiteur.setNumeroCnib(visiteurDTO.getNumeroCnib());
+        visiteur.setEtatVisite(visiteurDTO.getEtatVisite());
+        visiteur.setIdPersonnel(visiteurDTO.getIdPersonnel());
+        // visiteur.setPersonnel(visiteurDTO.getPersonnel());
+         PersonnelDTO MypersonnelsDTO;
+       visiteur.setPersonnel(PersonnelDTO
+               .convertPersonnelDTOtoPersonnel(PersonnelDTO
+                       .builder()
+                       .id(visiteurDTO.getIdPersonnel())
+                       .build()));
+
+      //  visiteur.setPersonnel(1);
+        visiteur.setVisiteCategorie(visiteurDTO.getVisiteCategorie());
 
         return visiteur;
     }
+
+
 }
+
+

@@ -44,6 +44,7 @@ public class EntrepriseDTO {
     public static Entreprise convertEntrepriseDTOtoEntreprise(EntrepriseDTO entrepriseDTO){
          Entreprise entreprise = new Entreprise() ;
          entreprise.setNomEntreprise(entrepriseDTO.getNomEntreprise());
+
          entreprise.setLogo(entrepriseDTO.getLogo());
          entreprise.setBoitePostal(entrepriseDTO.getBoitePostal());
          entreprise.setSigle(entrepriseDTO.getSigle());
