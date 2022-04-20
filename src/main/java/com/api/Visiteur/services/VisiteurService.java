@@ -12,4 +12,7 @@ public interface VisiteurService {
     void  suprimer(Long id);
     void  modifier(Long id);
     List<VisiteurDTO> listVisiteur();
+ //   List<VisiteurDTO> listAllVisite();
+
+
 }
