@@ -13,6 +13,9 @@ import static com.api.Visiteur.utils.constants.APP_ROOT;
 public interface VisiteurController {
     @GetMapping(value =APP_ROOT+"/visiteur/liste",produces = MediaType.APPLICATION_JSON_VALUE )
     List<VisiteurDTO> listVisiteurs();
+    @GetMapping(value =APP_ROOT+"/visiteur/liste/{etatVisite}",produces = MediaType.APPLICATION_JSON_VALUE )
+    List<VisiteurDTO> findAllbyEtatVisite( @PathVariable("etatVisite") Boolean etatVisite);
+
 
     @PostMapping(value =APP_ROOT+"/visiteur/create",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     VisiteurDTO save(@RequestBody VisiteurDTO dto);

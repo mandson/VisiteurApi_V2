@@ -29,6 +29,11 @@ public class VisiteurRestApi  implements VisiteurController {
     }
 
     @Override
+    public List<VisiteurDTO> findAllbyEtatVisite(Boolean etatVisite) {
+        return visiteurService.findAllbyEtatVisite(etatVisite);
+    }
+
+    @Override
     public VisiteurDTO save(VisiteurDTO dto) {
         return visiteurService.enregisterVisiteur(dto);
     }
