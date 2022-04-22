@@ -1,5 +1,6 @@
 package com.api.Visiteur.services;
 
+import com.api.Visiteur.dto.User2Dto;
 import com.api.Visiteur.dto.VisiteurDTO;
 import com.api.Visiteur.entities.Visiteur;
 
@@ -15,6 +16,8 @@ public interface VisiteurService {
     List<VisiteurDTO> listVisiteur();
  //   List<VisiteurDTO> listAllVisite();
    List<VisiteurDTO> findAllbyEtatVisite(Boolean etatVisite);
+    List<VisiteurDTO> listVisiteurByIdPersonnelAndEtat(Long idPersonnel,Boolean etatVisite);
+    List<VisiteurDTO> listVisiteurByIdPersonnel(Long idPersonnel);
 
 
 }

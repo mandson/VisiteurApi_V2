@@ -51,4 +51,13 @@ public class DepartementServiceImpl  implements DepartementService {
         return departementRepository.findAll().stream()
                 .map(DepartementDTO::converteDepartementToDepartementDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<DepartementDTO> listDepartementByIdEntreprise(Long idEntreprise) {
+        return departementRepository.findDepartementByIdEntreprisef(idEntreprise).stream()
+                .filter(departement ->idEntreprise.equals(idEntreprise) )
+                .map(DepartementDTO::converteDepartementToDepartementDTO).collect(Collectors.toList());
+
+    }
+
 }

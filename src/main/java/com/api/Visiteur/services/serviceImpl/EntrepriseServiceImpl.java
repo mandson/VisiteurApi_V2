@@ -1,12 +1,14 @@
 package com.api.Visiteur.services.serviceImpl;
 
 import com.api.Visiteur.dto.EntrepriseDTO;
+import com.api.Visiteur.dto.User2Dto;
 import com.api.Visiteur.repository.EntrepriseRepository;
 import com.api.Visiteur.services.EntrepriseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -59,5 +61,19 @@ public class EntrepriseServiceImpl implements EntrepriseService {
         return entrepriseRepository.findAll().stream()
                 .map(EntrepriseDTO::converteEntrepriseToEntrepriseDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public EntrepriseDTO findUserByIfu(String ifu) {
+        EntrepriseDTO verifuser = entrepriseRepository.findByIfu( ifu )
+
+                .map( EntrepriseDTO::fromEntity )
+                .orElseThrow( () -> new EntityNotFoundException(
+
+                        "Aucune email avec= " + ifu + "n'a ete trouver dans la base de BDD" )
+                );
+        if (verifuser.getIfu().equals( ifu )){
+            return verifuser;}
+        else return null;
     }
 }

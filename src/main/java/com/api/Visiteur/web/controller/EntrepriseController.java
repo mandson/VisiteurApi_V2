@@ -24,6 +24,9 @@ public interface EntrepriseController {
     @GetMapping(value =APP_ROOT+"/entreprise/find/{id}",produces = MediaType.APPLICATION_JSON_VALUE )
     Optional<EntrepriseDTO> findById(@PathVariable("id") Long id);
 
+    @GetMapping(value =APP_ROOT+"/entreprise/find/ifu/{ifu}",produces = MediaType.APPLICATION_JSON_VALUE )
+    Optional<EntrepriseDTO> findByIfu(@PathVariable("ifu") String ifu);
+
 
     @GetMapping(value =APP_ROOT+"/entriprise/edite/{id}",produces = MediaType.APPLICATION_JSON_VALUE )
     void modifier(@PathVariable("id")  Long id);

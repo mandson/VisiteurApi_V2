@@ -45,6 +45,12 @@ public class EntrepriseRestApi implements EntrepriseController {
     }
 
     @Override
+    public Optional<EntrepriseDTO> findByIfu(String ifu) {
+        return Optional.ofNullable(entrepriseService.findUserByIfu(ifu));
+    }
+
+
+    @Override
     public void modifier(Long id) {
 entrepriseService.modifier(id);
     }

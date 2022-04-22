@@ -19,6 +19,7 @@ public class Departement  implements Serializable {
     private  Long id;
     private  String nomDepartement;
     private  String descriptionDepartement;
+    private Long idEntreprisef;
 
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -27,4 +28,9 @@ public class Departement  implements Serializable {
     @OneToMany(mappedBy = "departement")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Personnel>personnels;
+
+
+    @OneToMany(mappedBy = "departement")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Collection<User2>user2;
 }

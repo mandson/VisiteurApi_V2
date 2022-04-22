@@ -4,6 +4,9 @@ import com.api.Visiteur.entities.Entreprise;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.persistence.Column;
+import java.util.Date;
+
 @Builder
 @Data
 public class EntrepriseDTO {
@@ -13,6 +16,10 @@ public class EntrepriseDTO {
     private  String sigle;
     private  String boitePostal;
 
+    private  String pays;
+    private  String ville;
+    private  String ifu;
+    private Date cratedAt;
 
     public static EntrepriseDTO converteEntrepriseToEntrepriseDTO( Entreprise entreprise  ){
         if (entreprise==null){
@@ -25,6 +32,10 @@ public class EntrepriseDTO {
                 .sigle(entreprise.getSigle())
                 .logo(entreprise.getLogo())
                 .boitePostal(entreprise.getBoitePostal())
+                .pays(entreprise.getPays())
+                .ville(entreprise.getVille())
+                .ifu(entreprise.getIfu())
+                .cratedAt(entreprise.getCratedAt())
                 .build();
     }
     public static EntrepriseDTO fromEntity(Entreprise entreprise){
@@ -38,6 +49,10 @@ public class EntrepriseDTO {
                 .sigle(entreprise.getSigle())
                 .logo(entreprise.getLogo())
                 .boitePostal(entreprise.getBoitePostal())
+                .pays(entreprise.getPays())
+                .ville(entreprise.getVille())
+                .ifu(entreprise.getIfu())
+                .cratedAt(entreprise.getCratedAt())
                 .build();
     }
 
@@ -49,6 +64,10 @@ public class EntrepriseDTO {
          entreprise.setBoitePostal(entrepriseDTO.getBoitePostal());
          entreprise.setSigle(entrepriseDTO.getSigle());
          entreprise.setId(entrepriseDTO.getId());
+         entreprise.setPays(entrepriseDTO.getPays());
+         entreprise.setVille(entrepriseDTO.getVille());
+         entreprise.setIfu(entrepriseDTO.getIfu());
+
          return entreprise;
 
     }

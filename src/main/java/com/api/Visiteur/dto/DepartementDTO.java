@@ -17,6 +17,7 @@ public class DepartementDTO {
     private  String nomDepartement;
     private  String descriptionDepartement;
     private Entreprise entreprise;
+    private Long idEntreprisef;
 
     private Long idEntreprise;
     public static DepartementDTO converteDepartementToDepartementDTO( Departement departement  ){
@@ -29,6 +30,8 @@ public class DepartementDTO {
                 .nomDepartement(departement.getNomDepartement())
                 .descriptionDepartement(departement.getDescriptionDepartement())
                 .entreprise(departement.getEntreprise())
+                .idEntreprise(departement.getEntreprise().getId())
+                .idEntreprisef(departement.getIdEntreprisef())
                 .build();
     }
 
@@ -37,7 +40,7 @@ public class DepartementDTO {
         departement.setId(departementDTO.getId());
         departement.setNomDepartement(departementDTO.getNomDepartement());
         departement.setDescriptionDepartement(departementDTO.getDescriptionDepartement());
-
+        departement.setIdEntreprisef(departementDTO.getIdEntreprisef());
 
         departement.setEntreprise(EntrepriseDTO.convertEntrepriseDTOtoEntreprise(
                 EntrepriseDTO.builder()

@@ -27,8 +27,6 @@ public class Personnel  implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Departement departement;
 
-    @OneToMany(mappedBy ="personnel" )
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Collection<Visiteur>visiteurs;
+
 
 }

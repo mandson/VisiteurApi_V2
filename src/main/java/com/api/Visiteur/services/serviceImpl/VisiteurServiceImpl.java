@@ -57,6 +57,17 @@ public class VisiteurServiceImpl  implements VisiteurService {
     @Override
     public List<VisiteurDTO> findAllbyEtatVisite(Boolean etatVisite) {
         return visiteurRepository.findAll().stream().map(VisiteurDTO::converteVisiteurToVisiteurDTO)
-                .filter(visiteurDTO -> visiteurDTO.getEtatVisite().equals(etatVisite))
                 .collect(Collectors.toList());    }
+
+    @Override
+    public List<VisiteurDTO> listVisiteurByIdPersonnelAndEtat(Long idPersonnel,Boolean etatVisite) {
+        return visiteurRepository.findVisiteurByIdPersonnel(idPersonnel).stream().map(VisiteurDTO::converteVisiteurToVisiteurDTO)
+                .filter(visiteurDTO -> visiteurDTO.getEtatVisite().equals(etatVisite) )
+                .collect(Collectors.toList());    }
+
+    @Override
+    public List<VisiteurDTO> listVisiteurByIdPersonnel(Long idPersonnel) {
+        return visiteurRepository.findVisiteurByIdPersonnel(idPersonnel).stream().map(VisiteurDTO::converteVisiteurToVisiteurDTO)
+                .filter(visiteurDTO -> visiteurDTO.getEtatVisite().equals(true) )
+                .collect(Collectors.toList());       }
 }

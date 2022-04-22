@@ -12,5 +12,5 @@ public interface DepartementService {
     void  suprimer(Long id);
     void  modifier(Long id);
     List<DepartementDTO> listDepartement();
-
+    List<DepartementDTO> listDepartementByIdEntreprise( Long idEntreprise);
 }

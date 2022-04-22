@@ -1,6 +1,7 @@
 package com.api.Visiteur.repository;
 
 
+import com.api.Visiteur.entities.User2;
 import com.api.Visiteur.entities.Visiteur;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +11,6 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface VisiteurRepository extends JpaRepository<Visiteur, Long> {
+    List<Visiteur> findVisiteurByIdPersonnel(Long idPersonnel);
 
 }

@@ -1,6 +1,7 @@
 package com.api.Visiteur.dto;
 
 import com.api.Visiteur.entities.Personnel;
+import com.api.Visiteur.entities.User2;
 import com.api.Visiteur.entities.VisiteCategorie;
 import com.api.Visiteur.entities.Visiteur;
 import lombok.Builder;
@@ -24,6 +25,8 @@ public class VisiteurDTO {
     private String prenom;
     private Integer contact;
     private String address;
+    private String motifVisite;
+
     private String photo;
     private String numeroCnib;
 
@@ -32,7 +35,7 @@ public class VisiteurDTO {
     private String entreprise;
     private Date heureEntrer;
     private Time heurSortie;
-    private Personnel personnel;
+    private User2 user2;
     private VisiteCategorie visiteCategorie;
     private Long idPersonnel;
     private Boolean etatVisite;
@@ -53,11 +56,12 @@ public class VisiteurDTO {
                 .entreprise(visiteur.getEntreprise())
                 .heureEntrer(visiteur.getHeureEntrer())
                 .heurSortie(visiteur.getHeurSortie())
-                .personnel(visiteur.getPersonnel())
+                .user2(visiteur.getUser2())
                 .visiteCategorie(visiteur.getVisiteCategorie())
                 .idPersonnel(visiteur.getIdPersonnel())
                 .numeroCnib(visiteur.getNumeroCnib())
                 .etatVisite(visiteur.getEtatVisite())
+                .motifVisite(visiteur.getMotifVisite())
                 .build();
     }
 
@@ -80,10 +84,11 @@ public class VisiteurDTO {
         visiteur.setNumeroCnib(visiteurDTO.getNumeroCnib());
         visiteur.setEtatVisite(visiteurDTO.getEtatVisite());
         visiteur.setIdPersonnel(visiteurDTO.getIdPersonnel());
+        visiteur.setMotifVisite(visiteurDTO.getMotifVisite());
         // visiteur.setPersonnel(visiteurDTO.getPersonnel());
          PersonnelDTO MypersonnelsDTO;
-       visiteur.setPersonnel(PersonnelDTO
-               .convertPersonnelDTOtoPersonnel(PersonnelDTO
+       visiteur.setUser2(User2Dto
+               .toEntity(User2Dto
                        .builder()
                        .id(visiteurDTO.getIdPersonnel())
                        .build()));

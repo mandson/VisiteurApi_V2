@@ -15,6 +15,9 @@ public interface DepartementController {
     @GetMapping(value =APP_ROOT+"/departement/liste",produces = MediaType.APPLICATION_JSON_VALUE )
     List<DepartementDTO> findAll();
 
+    @GetMapping(value =APP_ROOT+"/departement/liste/identreprise/{identreprise}",produces = MediaType.APPLICATION_JSON_VALUE )
+    List<DepartementDTO> findAllByidEntreprise( @PathVariable("identreprise") Long identreprise);
+
     @PostMapping(value =APP_ROOT+"/departement/create",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     DepartementDTO save(@RequestBody DepartementDTO dto);
 

@@ -26,6 +26,11 @@ public class DepartementRestApi  implements DepartementController {
     }
 
     @Override
+    public List<DepartementDTO> findAllByidEntreprise(Long identreprise) {
+        return departementService.listDepartementByIdEntreprise(identreprise);
+    }
+
+    @Override
     public DepartementDTO save(DepartementDTO dto) {
         return departementService.enregisterDepartement(dto);
     }

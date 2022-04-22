@@ -23,6 +23,7 @@ public class Visiteur  implements Serializable {
     private String address;
     private String photo;
     private String numeroCnib;
+    private String motifVisite;
 
     private LocalDateTime  dateVisite;
     private String entreprise;
@@ -33,7 +34,7 @@ public class Visiteur  implements Serializable {
     private Boolean etatVisite = true;
 
     @ManyToOne
-    private  Personnel personnel;
+    private  User2 user2;
     @ManyToOne
     private VisiteCategorie visiteCategorie;
 
