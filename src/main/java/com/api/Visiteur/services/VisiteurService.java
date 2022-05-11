@@ -18,6 +18,8 @@ public interface VisiteurService {
    List<VisiteurDTO> findAllbyEtatVisite(Boolean etatVisite);
     List<VisiteurDTO> listVisiteurByIdPersonnelAndEtat(Long idPersonnel,Boolean etatVisite);
     List<VisiteurDTO> listVisiteurByIdPersonnel(Long idPersonnel);
-
+    List<VisiteurDTO> listVisiteurByIdEntreprise(Long idEntreprise);
+    List<VisiteurDTO> listVisiteurByIdEntrepriseAndEtat(Long idEntreprise,Boolean etat);
+    List<VisiteurDTO> listVisiteurByCodeVisite(String codeVisite);
 
 }

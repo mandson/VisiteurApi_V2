@@ -34,8 +34,18 @@ public class VisiteurRestApi  implements VisiteurController {
     }
 
     @Override
+    public List<VisiteurDTO> findAllVisiteByCodeVisite(String codevisite) {
+        return visiteurService.listVisiteurByCodeVisite(codevisite);
+    }
+
+    @Override
     public List<VisiteurDTO> findAllbyidPersonnelandetat(Long idpersonnel, Boolean etatVisite) {
         return visiteurService.listVisiteurByIdPersonnelAndEtat(idpersonnel,etatVisite);
+    }
+
+    @Override
+    public List<VisiteurDTO> findAllbyIdentrepriseAndEtat(Long identreprise, Boolean etatVisite) {
+        return visiteurService.listVisiteurByIdEntrepriseAndEtat(identreprise,etatVisite);
     }
 
     @Override

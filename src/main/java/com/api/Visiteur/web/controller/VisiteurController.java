@@ -16,8 +16,15 @@ public interface VisiteurController {
     @GetMapping(value =APP_ROOT+"/visiteur/liste/{etatVisite}",produces = MediaType.APPLICATION_JSON_VALUE )
     List<VisiteurDTO> findAllbyEtatVisite( @PathVariable("etatVisite") Boolean etatVisite);
 
+    @GetMapping(value =APP_ROOT+"/visiteur/liste/codevisite/{codevisite}",produces = MediaType.APPLICATION_JSON_VALUE )
+    List<VisiteurDTO> findAllVisiteByCodeVisite( @PathVariable("codevisite") String codevisite);
+
     @GetMapping(value =APP_ROOT+"/visiteur/liste/idpersonnel/{idpersonnel}/visiteEtat/{etatVisite}",produces = MediaType.APPLICATION_JSON_VALUE )
     List<VisiteurDTO> findAllbyidPersonnelandetat( @PathVariable Long idpersonnel,@PathVariable Boolean etatVisite);
+
+
+    @GetMapping(value =APP_ROOT+"/visiteur/liste/identreprise/{identreprise}/visiteEtat/{etatVisite}",produces = MediaType.APPLICATION_JSON_VALUE )
+    List<VisiteurDTO> findAllbyIdentrepriseAndEtat( @PathVariable Long identreprise,@PathVariable Boolean etatVisite);
 
 
     @GetMapping(value =APP_ROOT+"/visiteur/liste/idpersonnel/{idpersonnel}",produces = MediaType.APPLICATION_JSON_VALUE )

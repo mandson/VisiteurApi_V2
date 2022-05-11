@@ -7,6 +7,7 @@ import com.api.Visiteur.entities.Visiteur;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,6 +16,8 @@ import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.UUID;
+
 @Builder
 @Data
 @Transactional
@@ -26,9 +29,10 @@ public class VisiteurDTO {
     private Integer contact;
     private String address;
     private String motifVisite;
-
+    private String codeVisite;
     private String photo;
     private String numeroCnib;
+    private String To;
 
     private LocalDateTime dateVisite;
 
@@ -39,6 +43,7 @@ public class VisiteurDTO {
     private VisiteCategorie visiteCategorie;
     private Long idPersonnel;
     private Boolean etatVisite;
+    private Boolean visitePlanifier;
 
     public static VisiteurDTO converteVisiteurToVisiteurDTO( Visiteur visiteur  ){
         if (visiteur==null){
@@ -62,6 +67,9 @@ public class VisiteurDTO {
                 .numeroCnib(visiteur.getNumeroCnib())
                 .etatVisite(visiteur.getEtatVisite())
                 .motifVisite(visiteur.getMotifVisite())
+                .visitePlanifier(visiteur.getVisitePlanifier())
+                .codeVisite(visiteur.getCodeVisite())
+                .To(visiteur.getEmail())
                 .build();
     }
 
@@ -85,6 +93,9 @@ public class VisiteurDTO {
         visiteur.setEtatVisite(visiteurDTO.getEtatVisite());
         visiteur.setIdPersonnel(visiteurDTO.getIdPersonnel());
         visiteur.setMotifVisite(visiteurDTO.getMotifVisite());
+        visiteur.setVisitePlanifier(visiteurDTO.getVisitePlanifier());
+        visiteur.setCodeVisite("V"+UUID.randomUUID().hashCode());
+        visiteur.setEmail(visiteurDTO.getTo());
         // visiteur.setPersonnel(visiteurDTO.getPersonnel());
          PersonnelDTO MypersonnelsDTO;
        visiteur.setUser2(User2Dto

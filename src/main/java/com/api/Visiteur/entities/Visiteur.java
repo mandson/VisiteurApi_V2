@@ -24,7 +24,9 @@ public class Visiteur  implements Serializable {
     private String photo;
     private String numeroCnib;
     private String motifVisite;
-
+    private Boolean visitePlanifier;
+    @Column(unique = true)
+    private String codeVisite;
     private LocalDateTime  dateVisite;
     private String entreprise;
     private Date heureEntrer= new Date(System.currentTimeMillis());
@@ -32,6 +34,8 @@ public class Visiteur  implements Serializable {
     private Time heurSortie= new Time(System.currentTimeMillis());
     private Long idPersonnel;
     private Boolean etatVisite = true;
+    private String email;
+
 
     @ManyToOne
     private  User2 user2;

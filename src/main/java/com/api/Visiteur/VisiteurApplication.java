@@ -23,12 +23,11 @@ public class VisiteurApplication   implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		initialise.initMenu();
-		initialise.initRole();
+		//initialise.initMenu();
+	//	initialise.initRole();
 		//initialise.initEntreprise();
 		//initialise.initDepartement();
 	//	initialise.initUser();
 		//initialise.initMenuContent();
-
 	}
 }

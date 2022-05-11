@@ -1,9 +1,6 @@
 package com.api.Visiteur.dto;
 
-import com.api.Visiteur.entities.Departement;
-import com.api.Visiteur.entities.Entreprise;
-import com.api.Visiteur.entities.Role;
-import com.api.Visiteur.entities.User2;
+import com.api.Visiteur.entities.*;
 import lombok.Builder;
 import lombok.Data;
 
@@ -36,6 +33,7 @@ public class User2Dto {
     private Long idDepartement;
     private Departement departement;
     private String matricule;
+    private Photovisiteur photovisiteur;
 
     public static User2Dto fromEntity(User2 user){
         if (user==null){
@@ -43,6 +41,7 @@ public class User2Dto {
         }
         return User2Dto.builder()
                 .id( user.getId() )
+                .photovisiteur(user.getPhotovisiteur())
                 .userId( user.getUserId() )
                 .firstName( user.getFirstName() )
                 .lastName( user.getLastName() )

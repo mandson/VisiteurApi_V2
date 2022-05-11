@@ -57,6 +57,7 @@ public class VisiteurServiceImpl  implements VisiteurService {
     @Override
     public List<VisiteurDTO> findAllbyEtatVisite(Boolean etatVisite) {
         return visiteurRepository.findAll().stream().map(VisiteurDTO::converteVisiteurToVisiteurDTO)
+                .filter(visiteurDTO -> visiteurDTO.getEtatVisite().equals(etatVisite) )
                 .collect(Collectors.toList());    }
 
     @Override
@@ -70,4 +71,27 @@ public class VisiteurServiceImpl  implements VisiteurService {
         return visiteurRepository.findVisiteurByIdPersonnel(idPersonnel).stream().map(VisiteurDTO::converteVisiteurToVisiteurDTO)
                 .filter(visiteurDTO -> visiteurDTO.getEtatVisite().equals(true) )
                 .collect(Collectors.toList());       }
+
+    @Override
+    public List<VisiteurDTO> listVisiteurByIdEntreprise(Long idEntreprise) {
+        return visiteurRepository.findAll().stream().map(VisiteurDTO::converteVisiteurToVisiteurDTO)
+                .filter(visiteurDTO -> visiteurDTO.getUser2().getIdEntreprisef().equals(idEntreprise) )
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public List<VisiteurDTO> listVisiteurByIdEntrepriseAndEtat(Long idEntreprise, Boolean etat) {
+        return visiteurRepository.findAll().stream().map(VisiteurDTO::converteVisiteurToVisiteurDTO)
+                .filter(visiteurDTO -> visiteurDTO.getUser2().getIdEntreprisef().equals(idEntreprise) )
+                .filter(visiteurDTO -> visiteurDTO.getEtatVisite().equals(etat))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<VisiteurDTO> listVisiteurByCodeVisite(String codeVisite) {
+        return visiteurRepository.findAll().stream().map(VisiteurDTO::converteVisiteurToVisiteurDTO)
+                .filter(visiteurDTO -> visiteurDTO.getCodeVisite().equals(codeVisite) )
+                .collect(Collectors.toList());
+    }
 }

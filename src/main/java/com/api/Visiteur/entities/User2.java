@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class User2  implements Serializable {
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
         private String userId;
         private String firstName;
@@ -47,5 +47,8 @@ public class User2  implements Serializable {
         @ManyToOne
         @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
         private Departement departement;
+
+        @OneToOne
+        private Photovisiteur photovisiteur;
 
 }
