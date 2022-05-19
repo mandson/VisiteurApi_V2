@@ -25,9 +25,9 @@ public class VisiteurApplication   implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		//initialise.initMenu();
 	//	initialise.initRole();
-		//initialise.initEntreprise();
-		//initialise.initDepartement();
-	//	initialise.initUser();
+	//	initialise.initEntreprise();
+	//	initialise.initDepartement();
+		//initialise.initUser();
 		//initialise.initMenuContent();
 	}
 }

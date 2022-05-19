@@ -80,7 +80,7 @@ public class VisiteurServiceImpl  implements VisiteurService {
     }
 
 
-    @Override
+   @Override
     public List<VisiteurDTO> listVisiteurByIdEntrepriseAndEtat(Long idEntreprise, Boolean etat) {
         return visiteurRepository.findAll().stream().map(VisiteurDTO::converteVisiteurToVisiteurDTO)
                 .filter(visiteurDTO -> visiteurDTO.getUser2().getIdEntreprisef().equals(idEntreprise) )
@@ -94,4 +94,23 @@ public class VisiteurServiceImpl  implements VisiteurService {
                 .filter(visiteurDTO -> visiteurDTO.getCodeVisite().equals(codeVisite) )
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Long listVisiteurTotalVisiteur(Long idEntreprise) {
+
+        Long toto = visiteurRepository.findAll().stream()
+                .filter(visiteurDTO -> visiteurDTO.getUser2().getIdEntreprisef().equals(idEntreprise) )
+                .count();
+        return toto;
+    }
+
+/*
+    @Override
+    public List<VisiteurDTO> listVisiteurByIdEntreprise(Long idEntreprise) {
+          return visiteurRepository.findAll().stream().map(VisiteurDTO::converteVisiteurToVisiteurDTO)
+                .filter(visiteurDTO -> visiteurDTO.getUser2().getDepartement().getEntreprise().getId().equals(idEntreprise) )
+                .collect(Collectors.toList());
+    }*/
+
+
 }

@@ -5,10 +5,12 @@ import com.api.Visiteur.dto.MenuDTO;
 import com.api.Visiteur.services.DepartementService;
 import com.api.Visiteur.services.MenueService;
 import com.api.Visiteur.web.controller.MenuController;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 
@@ -27,5 +29,10 @@ public class MenuApi implements MenuController {
     @Override
     public List<MenuDTO> listeMenuByAccess(String access) {
         return menueService.listMenuByAccess(access);
+    }
+
+    @Override
+    public String exportReport(String format) throws JRException, FileNotFoundException {
+        return menueService.exportReport(format);
     }
 }

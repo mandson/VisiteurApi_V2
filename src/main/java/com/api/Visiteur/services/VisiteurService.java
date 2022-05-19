@@ -1,8 +1,6 @@
 package com.api.Visiteur.services;
 
-import com.api.Visiteur.dto.User2Dto;
 import com.api.Visiteur.dto.VisiteurDTO;
-import com.api.Visiteur.entities.Visiteur;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,5 +19,8 @@ public interface VisiteurService {
     List<VisiteurDTO> listVisiteurByIdEntreprise(Long idEntreprise);
     List<VisiteurDTO> listVisiteurByIdEntrepriseAndEtat(Long idEntreprise,Boolean etat);
     List<VisiteurDTO> listVisiteurByCodeVisite(String codeVisite);
+    //List<VisiteurDTO> listVisiteurByIdEntreprise(Long idEntreprise);
+
+    Long listVisiteurTotalVisiteur(Long idEntreprise);
 
 }

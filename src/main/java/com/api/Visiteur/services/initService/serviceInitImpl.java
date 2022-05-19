@@ -82,18 +82,23 @@ public class serviceInitImpl implements serviceInit {
     @Override
     public void initEntreprise() {
         Entreprise entreprise = new Entreprise();
-        entreprise.setNomEntreprise("Mandson Corp Technologies");
+        entreprise.setNomEntreprise("IPSUM ENTREPRISE");
         entreprise.setSigle("MCT");
         entreprise.setBoitePostal("mcpBP01Ouaga");
-        entreprise.setLogo("logo undefine");
-        entrepriseRepository.save(entreprise);
+        entreprise.setLogo("logo non definie");
+        entreprise.setIfu("0001fu");
+        entreprise.getCratedAt();
+        entreprise.setPays("CI");
+        entreprise.setVille("Ouaguadougou");
 
+        entrepriseRepository.save(entreprise);
+/*
         Entreprise entreprise2 = new Entreprise();
         entreprise2.setNomEntreprise("ADV-Technologies SA");
         entreprise2.setSigle("ADV-SA");
         entreprise2.setBoitePostal("mcpBP01BOBO");
         entreprise2.setLogo("logo undefine");
-        entrepriseRepository.save(entreprise2);
+        entrepriseRepository.save(entreprise2);*/
     }
 
 
@@ -129,13 +134,15 @@ public class serviceInitImpl implements serviceInit {
     public void initDepartement() {
         Departement departement= new Departement();
         departement.setEntreprise(EntrepriseDTO.convertEntrepriseDTOtoEntreprise(EntrepriseDTO.builder().id(1L).build()));
-        departement.setNomDepartement("Defaul Departement");
+        departement.setNomDepartement(" General");
+        departement.setIdEntreprisef(1L);
+        departement.setDescriptionDepartement("Depatement par defaut");
         departementRepository.save(departement);
 
-        Departement departement2= new Departement();
+     /*   Departement departement2= new Departement();
         departement2.setEntreprise(EntrepriseDTO.convertEntrepriseDTOtoEntreprise(EntrepriseDTO.builder().id(2L).build()));
         departement2.setNomDepartement("Defaul Departement");
-        departementRepository.save(departement2);
+        departementRepository.save(departement2);*/
     }
 
 
@@ -148,6 +155,9 @@ public class serviceInitImpl implements serviceInit {
         user.setEmail("admin@gmail.com");
         user.setPassword("password123");
         user.setIdDepartement(1L);
+        user.setBureau("B001");
+        user.setUserId("1");
+        user.setIdEntreprisef(1L);
         user.setDepartement(
         DepartementDTO.convertDepartementDTOtoDepartement(DepartementDTO.builder().id(1L).build())
         );
@@ -156,28 +166,11 @@ public class serviceInitImpl implements serviceInit {
         );
         user.setIsActive(true);
         user.setIsNotLocked(true);
-        user.setIdDepartement(1l);
         user.setProfilImage("img.png");
         userRepository.save(user);
 
 
-        User2 user2=new User2();
-        user2.setFirstName("Oudraogo");
-        user2.setLastName("Martial");
-        user2.setIdRole(8);
-        user2.setEmail("user@gmail.com");
-        user2.setPassword("password");
-        user2.setDepartement(
-                DepartementDTO.convertDepartementDTOtoDepartement(DepartementDTO.builder().id(1L).build())
-        );
-        user2.setRoles(
-                RoleDto.toEntity(RoleDto.builder().id(8).build())
-        );
-        user2.setIsActive(true);
-        user2.setIsNotLocked(true);
-        user2.setIdDepartement(2l);
-        user2.setProfilImage("img2.png");
-        userRepository.save(user2);
+
 
     }
 

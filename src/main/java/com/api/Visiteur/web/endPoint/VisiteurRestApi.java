@@ -39,6 +39,11 @@ public class VisiteurRestApi  implements VisiteurController {
     }
 
     @Override
+    public List<VisiteurDTO> findAllVisiteByEntreprise(Long identreprise) {
+        return visiteurService.listVisiteurByIdEntreprise(identreprise);
+    }
+
+    @Override
     public List<VisiteurDTO> findAllbyidPersonnelandetat(Long idpersonnel, Boolean etatVisite) {
         return visiteurService.listVisiteurByIdPersonnelAndEtat(idpersonnel,etatVisite);
     }
@@ -71,5 +76,10 @@ visiteurService.modifier(id);
     @Override
     public void modifier(Long id) {
 
+    }
+
+    @Override
+    public Long listVisiteurTotalVisiteur(Long idEntreprise) {
+        return visiteurService.listVisiteurTotalVisiteur(idEntreprise);
     }
 }

@@ -4,7 +4,11 @@ import com.api.Visiteur.dto.User2Dto;
 import com.api.Visiteur.files.model.UploadFile;
 import com.api.Visiteur.files.repository.FileUploadRepossitory;
 import com.api.Visiteur.files.service.FileUploadService;
+import com.api.Visiteur.services.RoleService;
 import com.api.Visiteur.web.controller.VisiteCategorieController;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -15,11 +19,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.api.Visiteur.utils.constants.APP_ROOT;
 
@@ -28,11 +38,20 @@ import static com.api.Visiteur.utils.constants.APP_ROOT;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 
 @RequestMapping("api")
+
 public class fileUploadController {
     @Autowired
+    RoleService roleService;
+
+
+    @Autowired
     private FileUploadService fileUploadService;
+
+
     @Autowired
     private FileUploadRepossitory fileUploadRepossitory;
+
+
     @PostMapping("/upload/local")
     public void upload(@RequestParam("file")MultipartFile multipartFile){
             fileUploadService.uploadToLocal(multipartFile);
@@ -75,4 +94,32 @@ public class fileUploadController {
     }
 
 
+
+
+    @RequestMapping("/pdf")
+
+    public void getReportsinPDF(HttpServletResponse response) throws JRException, IOException {
+
+        //Compiled report
+        InputStream jasperStream = (InputStream) this.getClass().getResourceAsStream("/VisiteurList.jasper");
+
+        //Adding attribute names
+        Map params = new HashMap();
+        params.put("id","id");
+        params.put("nameRole","nameRole");
+        params.put("codeRole","codeRole");
+        params.put("descriptionRole","descriptionRole");
+        params.put("userCrateName","userCrateName");
+
+        final JRBeanCollectionDataSource source = new JRBeanCollectionDataSource(roleService.listRole());
+
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, source);
+
+        response.setContentType("application/x-pdf");
+        response.setHeader("Content-disposition", "inline; filename=StudentList.pdf");
+
+        final ServletOutputStream outStream = response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+    }
 }

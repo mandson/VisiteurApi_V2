@@ -1,5 +1,7 @@
 package com.api.Visiteur.files.service;
 
+import com.api.Visiteur.dto.MenuDTO;
+import com.api.Visiteur.files.dto.UploadFileDto;
 import com.api.Visiteur.files.model.UploadFile;
 import com.api.Visiteur.files.repository.FileUploadRepossitory;
 import lombok.AllArgsConstructor;
@@ -14,6 +16,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
@@ -42,7 +46,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
         try {
             uploadFile.setFileuserId("userId:X");
-            uploadFile.setFileData(null);
+            uploadFile.setFileData(uploadFile.getFileData());
             uploadFile.setFileType(file.getContentType());
             uploadFile.setFileName(file.getOriginalFilename().replaceAll(" ","-").replace("'","")) ;
 
@@ -68,6 +72,15 @@ public class FileUploadServiceImpl implements FileUploadService {
     public UploadFile downloadFileByFileName(String fileName) {
         UploadFile uploadedFileToRet=  fileUploadRepossitory.findByFileName(fileName);
         return  uploadedFileToRet;    }
+
+    @Override
+    public List<UploadFileDto> listfiles() {
+        return fileUploadRepossitory.findAll().stream()
+
+                .map(UploadFileDto::fromEntity)
+                .collect(Collectors.toList())
+                ;
+    }
 
 
 }
